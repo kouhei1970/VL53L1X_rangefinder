@@ -38,8 +38,6 @@
 #include "hardware/gpio.h"
 
 
-#define VL53L1X_7BITS_ADDRESS 0x29
-
 #define I2C_SUCCESS 0
 #define I2C_FAILED -1
 #define I2C_BUFFER_EXCEEDED -2
@@ -113,15 +111,15 @@ int8_t i2c_read_register(char adresse_7_bits, uint16_t index, uint8_t *pdata, ui
 
 
 int8_t VL53L1_WriteMulti( uint16_t dev, uint16_t index, uint8_t *pdata, uint32_t count) {
-	return i2c_write_register(VL53L1X_7BITS_ADDRESS, index, pdata, count);
+	return i2c_write_register(dev, index, pdata, count);
 }
 
 int8_t VL53L1_ReadMulti(uint16_t dev, uint16_t index, uint8_t *pdata, uint32_t count){
-	return i2c_read_register(VL53L1X_7BITS_ADDRESS, index, pdata, count);
+	return i2c_read_register(dev, index, pdata, count);
 }
 
 int8_t VL53L1_WrByte(uint16_t dev, uint16_t index, uint8_t data) {
-	return i2c_write_register(VL53L1X_7BITS_ADDRESS, index, &data, 1);
+	return i2c_write_register(dev, index, &data, 1);
 }
 
 int8_t VL53L1_WrWord(uint16_t dev, uint16_t index, uint16_t data) {
