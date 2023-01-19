@@ -29,3 +29,7 @@ pico_enable_stdio_uart(VL53LX_rangefinder 0)
 
 pico_add_extra_outputs(VL53LX_rangefinder)
 
+add_custom_target(Flash
+    DEPENDS VL53LX_rangefinder
+    COMMAND sudo picotool load -f ${PROJECT_BINARY_DIR}/VL53LX_rangefinder.uf2
+)
